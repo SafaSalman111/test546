@@ -35,19 +35,14 @@ app.get('/webhook', (req, res) => {
   }
 });
 
-app.post('/webhook', async (req, res) => {
-  const body = req.body;
+app.post('/webhook', (req, res) => {
+  res.sendStatus(200); // ✅ Langsung beri respons agar Facebook puas
 
-  console.log('Webhook diterima:', JSON.stringify(body, null, 2));
+  const body = req.body;
 
   if (body.entry) {
     for (let entry of body.entry) {
-      console.log('Processing entry:', entry);
-
-      const changes = entry.changes;
-      for (let change of changes) {
-        console.log('Processing change:', change);
-
+      for (let change of entry.changes) {
         if (change.field === 'comments') {
           const comment = change.value;
           const igUserId = comment.from.id;
@@ -58,9 +53,11 @@ app.post('/webhook', async (req, res) => {
 
           if (text.toLowerCase().includes('saya mau')) {
             console.log(`Trigger DM karena mengandung "saya mau"`);
-            await sendDM(igUserId, "Hai! Ini info lengkapnya ya 😄 👉 https://linkkamu.com");
-          } else {
-            console.log('Komentar tidak mengandung trigger keyword.');
+
+            // Jalankan DM di background
+            sendDM(igUserId, "Hai! Ini info lengkapnya ya 😄 👉 https://linkkamu.com")
+              .then(() => console.log('DM sent!'))
+              .catch(err => console.error('Failed to send DM:', err));
           }
         }
       }
@@ -68,8 +65,6 @@ app.post('/webhook', async (req, res) => {
   } else {
     console.log('Tidak ada entry dalam body request');
   }
-
-  res.sendStatus(200);
 });
 
 async function sendDM(userId, message) {
