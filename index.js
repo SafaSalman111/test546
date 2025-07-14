@@ -5,7 +5,7 @@ const axios = require('axios');
 const app = express();
 app.use(bodyParser.json());
 
-const PAGE_ACCESS_TOKEN = 'EAAUkIzhDP1oBPHjAKPPNlm8ZCaiMGVG200fBwfjqayZC7jhadfNYFCFD7P3YLwJ4r74ZBbuztO2XGJyGwTK8ns4YczBbhueXYDmTxLlEIiHgilyRAkFa3XRma9tZC9RnC8MPlb7W2Q3xfnzuQK49UOx2IyiyU4TT0JW3vwLjU0h5X4UOlM0fV7WkRHfGe6s0g8ZAVj7QSowwK4xK4k4ZCrn4gl1JIUFktnKZA99';
+const PAGE_ACCESS_TOKEN = 'EAAUkIzhDP1oBPEfJ9Kczhc0jhw92XNNlvOWHRbZC0sbvJKiTF6yWWHssu5ZAJn89vRZArh1gDuBJA2SwsioXZCmlLNITrM9dnUFJvcEAXenpUeXywRHCZB1lNQjxxYcngqNDByJvWzh2vYuOaWZCxjw9SZAnxfwvw8psxymljqMiPZBDQvPgepZCc3cyYzZCaD7CkbouHG7QemWkGWUmKBPdGV0ZBAqCvZCZBMwC8XpRnuAZDZD';
 
 // ✅ Tambahan untuk lewati ngrok warning
 app.use((req, res, next) => {
