@@ -91,4 +91,5 @@ async function sendDM(userId, message) {
   }
 }
 
-app.listen(3000, () => console.log('🚀 Webhook berjalan di http://localhost:3000'));
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`🚀 Server berjalan di port ${PORT}`));
