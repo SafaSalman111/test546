@@ -36,6 +36,7 @@ app.get('/webhook', (req, res) => {
 });
 
 app.post('/webhook', (req, res) => {
+  console.log("Test");
   res.sendStatus(200); // ✅ Langsung beri respons agar Facebook puas
 
   const body = req.body;
